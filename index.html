@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P A L A B R E A N D O</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="estilos.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="contenedor-presentacion">
+        <p id="p-creador">  CREADOR : S U B N O R M A L Y N X</p>
+        <p id="p-nombre-juego">P A L A B R E A N D O</p>
+        <p id="p-continuar">Presiona "espacio" para continuar</p>
+        <div id="contenedor-links">
+            <a href="http://youtube.com/@subnormalynx9634" class="links">
+                <i class="bi-youtube" id="icon-youtube"></i>
+            </a>
+
+            <a href="http://instagram.com/subnormalynx?igshid=NGExMmI2YTkyZg==" class="links">
+                <i class="bi-instagram" id="icon-ig"></i>
+            </a>
+
+            <a href="http://www.tiktok.com/@subnormalynx?_t=8daWprvtkxC&_r=1" class="links">
+                <i class="bi-tiktok" id="icon-tiktok"></i>
+            </a>
+        </div>
+    </div>
+    <div id="contenedor-historia">
+        <div id="div-robot-dialogo">
+            <i class="bi bi-robot"></i>
+            <div id="cuadro-dialogo">
+                <p id="p-dialogo">
+                    <!-- ESTO SE RELLENARA CON JS -->
+                    ...
+                </p>
+            </div>
+        </div>
+        <div id="cuadro-aceptacion-negacion">
+            <p id="p-aceptar-reto">Claro! te ayudare...</p>
+            <p id="p-negar-reto">Perdon, no tengo tiempo</p>
+
+        </div>
+        <p id="p-continuar-historia">Presiona "espacio" para avanzar la conversacion</p>
+
+    </div>
+    <div id="contenedor-tutorial">
+        <p id="titulo-como-jugar">Como jugar:</p>
+        <div id="div-p-como-jugar">
+
+            <p id="p-como-jugar-01" class="p-como-jugar">- Tienes 30 segundos para escribir el nombre del los objetos que aparecen en imagen.</p>
+
+            <p id="p-como-jugar-02" class="p-como-jugar">- Al terminar de escribir el nombre de un objeto, presiona enter para revisar si esta bien escrito o no.</p>
+
+            <p id="p-como-jugar-03" class="p-como-jugar">- Tienes 3 vidas,si escribes mal un nombre y presionas enter, se pierde una vida, si los 30 segundos se acaban, se pierde la partida.</p>
+
+            <p id="p-como-jugar-04" class="p-como-jugar">- Ganaras si llegas a los 10 puntos,no es nesesario poner tilde(para que el juego sea mas divertido).</p>
+
+        </div>
+
+        <p id="p-continuar-tutorial">Presiona "espacio" para continuar</p>
+
+    </div>
+    <div id="contenedor-ganaste">
+        <p id="p-ganar">LO LOGRASTE!</p>
+    </div>
+    
+    <div id="todo">
+
+        <p id="p-empezar-juego">Presiona "espacio" para empezar</p>
+
+        <div id="contenedor-nuevo-juego" class="contenedor-nuevo-juego-invisible">
+            <p id="p-perder">HAS PERDIDO!</p>
+            <p id="puntaje-juego-acabado">SCORE:<span id="puntaje-juego-acabado-cifra"></span>
+            </p>
+            <button type="button" id="boton-jugar-otravez">
+                JUGAR OTRA VEZ
+                <i class="bi bi-arrow-clockwise" id="icon-jugar-otravez"></i>
+            </button>
+        </div>
+        <div id="contenedor-puntaje-vida">
+            <div class="contenedor-puntajes contenedor-vida-clase" id="contenedor-vidas">
+                <i class="bi bi-suit-heart-fill icon-vida" id="vida-1"></i>
+                <i class="bi bi-suit-heart-fill icon-vida" id="vida-2"></i>
+                <i class="bi bi-suit-heart-fill icon-vida" id="vida-3"></i>
+                <p id="mensaje-advertencia-vida"></p>
+            </div>
+            <div class="contenedor-puntajes">
+                <h2 id="puntaje-actual-p" class="p-puntajes-estilo">SCORE:<h2 id="puntaje-actual-cifra"
+                class="p-puntaje-cifra"></h2></h2>
+            </div>
+            <!-- <div class="contenedor-puntajes">
+                <h2 id="puntaje-record-p" class="p-puntajes-estilo">RECORD SCORE: <h2 id="puntaje-record-cifra"
+                class="p-puntaje-cifra"></h2></h2>
+            </div> -->
+        </div>
+        <div id="div-iluminacion">
+            <div id="contenedor-juego">
+                <div id="reloj">
+                    <p id="reloj-cifra">30</p>
+                </div>
+                <div id="contenedor-busqueda">
+                    <p id="p-resultado"></p> 
+                    <div id="separador">
+                        <input type="text" name="buscador" id="buscador"
+                        placeholder="" autofocus>
+                        <!-- <button id="boton-buscar">🔍</button> -->
+                    </div>
+                    <div id="contenedor-objeto">
+                        <!--ESTO SE RELLENARA CON JS-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
