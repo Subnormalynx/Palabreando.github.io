@@ -9,7 +9,6 @@ const relojCifra = document.getElementById('reloj-cifra');
 const botonStart = document.getElementById('start');
 const iluminacion = document.getElementById('div-iluminacion');
 const score = document.getElementById('puntaje-actual-cifra');
-// const scoreRecord = document.getElementById('puntaje-record-cifra');
 const vidas = document.getElementById('contenedor-vidas');
 const advertenciaUnaVida = document.getElementById('mensaje-advertencia-vida');
 const divGameOver = document.getElementById('contenedor-nuevo-juego');
@@ -37,78 +36,74 @@ let valorScore = 0;
 const valorBusqueda = buscador.value;
 let numeroDeVida = 3;
 let valorRecord;
-let switchEjecutado = false;
-let switchEjecutado2 = false;
-let switchEjecutado3 = false;
-let dialogoGanarBoleano = false;
-let booleanoFinal = false;
+var switchEjecutado = false;
+var switchEjecutado2 = false;
+var switchEjecutado3 = false;
+var dialogoGanarBoleano = false;
+var booleanoFinal = false;
 let dialogoPosicion = 0;
 let dialogoPosicionAceptacion = 0;
 let dialogoPosicionNegacion = 0;
 let dialogoPosicionGanar = 0;
 let clickNegarReto = false;
 let clickAceptarReto = false;
-let contador;
+var contador;
 let idArray;
 let whileBuscador = false;
-// let recordDeStorage = localStorage.getItem('scoreRecordStorage');
-// scoreRecord.innerHTML = recordDeStorage;
-
-
 
 //=============== L I S T A     D E     O B J E T O S ===============
 
 let numeroDeObjetos = [];
 const objetos = [
     {
-        respuesta:'microondas',
+        respuesta: ['microondas','microwave'],
         id:'objeto-01',
-        imagen:'img/microondas.jpg'
+        imagen:'img/microondas.webp'
     },
     {
-        respuesta:'celular',
+        respuesta:['celular','telefono','movil','mobile'],
         id:'objeto-02',
-        imagen:'img/celular.jpg'
+        imagen:'img/celular.webp'
     },
     {
-        respuesta:'arbol',
+        respuesta: ['arbol'],
         id:'objeto-03',
-        imagen:'img/arbol.jpg'
+        imagen:'img/arbol.webp'
     },
     {
-        respuesta:'cuchillo' ,
+        respuesta: ['cuchillo'],
         id:'objeto-04',
-        imagen:'img/cuchillo.jpg'
+        imagen:'img/cuchillo.webp'
     },
     {
-        respuesta:'espejo',
+        respuesta: ['espejo'],
         id:'objeto-05',
-        imagen:'img/espejo.jpg'
+        imagen:'img/espejo.webp'
     },
     {
-        respuesta:'lampara',
+        respuesta:['lampara','foco'],
         id:'objeto-06',
-        imagen:'img/lampara.jpg'
+        imagen:'img/lampara.webp'
     },
     {
-        respuesta:'mesa',
+        respuesta: ['mesa'],
         id:'objeto-07',
-        imagen:'img/mesa.jpg'
+        imagen:'img/mesa.webp'
     },
     {
-        respuesta:'pantalla',
+        respuesta:['pantalla','television','televisor','tele'],
         id:'objeto-08',
-        imagen:'img/pantalla.jpg'
+        imagen:'img/pantalla.webp'
     },
     {
-        respuesta:'peine',
+        respuesta:['peine','cepillo','pua'],
         id:'objeto-09',
-        imagen:'img/peine.jpg'
+        imagen:'img/peine.webp'
     },
     {
-        respuesta:'ventilador',
+        respuesta:['ventilador','abanico','turboventilador'],
         id:'objeto-10',
-        imagen:'img/ventilador.jpg'
+        imagen:'img/ventilador.webp'
     },
 ];
 
@@ -177,7 +172,7 @@ function quitaCorazon() {
     let primerCorazon = vidas.firstElementChild;
     vidas.removeChild(primerCorazon);
     numeroDeVida--;
-    console.log(corazones);
+    (corazones);
     comprobacionDePartida();
 }
 function quitaCorazones() {
@@ -193,20 +188,31 @@ function agregarCorazonesNuevos() {
     `;
     vidas.innerHTML = corazonesNuevos;
 }
+function empezarReloj() {
+  pEmpezarJuego.style.display = 'none';
+  buscador.focus();
+  contador = setInterval(() => {
+    tiempo--;
+    relojCifra.innerHTML = tiempo;
+    poneAnimacionReloj();
+    setTimeout(() => {
+        quitaAnimacionReloj();
+    },700);
+    if (tiempo == 0) {
+        clearInterval(contador);
+        quitaCorazones();
+    }
+  },1000);
+}
 function comprobacionDePartida() {
     if(numeroDeVida == 0){
         aparicionDeGameOver();
-        // if (valorRecord >= recordDeStorage) {
-        //     localStorage.setItem('scoreRecordStorage',valorRecord);
-            
-        // }
         clearInterval(contador);
         valorScore = 0;
         score.innerHTML = valorScore;
         tiempo = 30;
         relojCifra.innerHTML = tiempo;
         numeroDeVida = 3;
-        switchEjecutado3 = true;
         pEmpezarJuego.style.display = 'block';
         numeroDeObjetos.splice(0, numeroDeObjetos.length);
     }
@@ -214,11 +220,12 @@ function comprobacionDePartida() {
 function aparicionDeGameOver() {
     divGameOver.style = 'display: flex';
     spanScoreFinal.innerHTML = valorScore;
-    // valorRecord = valorScore;
     botonJugarOtraVez.addEventListener('click',() => {
-        agregarCorazonesNuevos();       
+        agregarCorazonesNuevos();
+
         buscador.value = '';
         divGameOver.style.animation = 'desaparecerLentamente 1s linear';
+        switchEjecutado3 = true;
         setTimeout(() => {
             divGameOver.style.animation = '';
             divGameOver.style.display = 'none';
@@ -238,8 +245,8 @@ function aparicionDeObjetos() {
             break cambiaNumero;
         }
     }
-    divObjetos.innerHTML = `<img src="${objetos[idArray].imagen}" alt="" class="imagen-objeto" id='${objetos[idArray].id}' data-respuesta='${objetos[idArray].respuesta}'>`;
-    console.log(numeroDeObjetos);
+    divObjetos.innerHTML = `<img src="${objetos[idArray].imagen}" alt="" class="imagen-objeto" id='${objetos[idArray].id}' data-respuesta='${objetos.indexOf(objetos[idArray])}'>`;
+    (numeroDeObjetos);
 }
 function removerObjetos() {
     let objetoARemover = divObjetos.firstElementChild;
@@ -252,46 +259,49 @@ window.addEventListener('keyup', (e) => {
     switch (e.key) {
         case 'Enter':
             let valor = buscador.value;
-            valor = buscador.value.toUpperCase();
-            
-            objetoRespuesta = document.querySelector('[data-respuesta]');
-            respuestaCorrecta = objetoRespuesta.getAttribute('data-respuesta').toUpperCase();
+            valor = buscador.value.toLowerCase();
+            var objetoRespuesta = document.querySelector('[data-respuesta]');
+            var objetoIdArrayRespuesta = parseInt(objetoRespuesta.getAttribute('data-respuesta'));
+            let pasesRes = 0;
+            objetos[objetoIdArrayRespuesta].respuesta.forEach(r => {
+              if (valor == r) {
+                  buscador.setAttribute('placeholder',`${valor} es correcto`);
+                  buscador.classList.add('placeholder-correcto');
+                  valorScore++;
+                  score.innerHTML = valorScore;
+                  poneEstilosCorrecto();
+                  numeroDeObjetos.push(idArray);
+  
+                  if (valorScore == 10) {
+                      // booleanoFinal = true;
+                      clearInterval(contador);
+                      divGanaste.style.display = 'block';
+                      divGanaste.style.animation = 'parpadeoGanaste 0.2s infinite'
+                      todoJuego.style.display = 'none';
+                      todoJuego.style.animation = '';
+                      dialogoParrafo.innerHTML = '...';
+                      contenedorHistoria.style.display = 'flex';
+                      setTimeout(() => {
+                          divGanaste.style.animation = 'desaparecerLentamente 2s linear';
+                          setTimeout(() => {
+                              divGanaste.style.display = 'none';
+                              divGanaste.style.animation = ''
+                              dialogoGanarBoleano = true;
+                          },1800);
+                      },1000)
+                  }
+              }
+              else{
+                  pasesRes++;
+                  if (pasesRes == objetos[objetoIdArrayRespuesta].respuesta.length) {
+                    buscador.setAttribute('placeholder',`${valor} es incorrecto`);
+                    buscador.classList.add('placeholder-incorrecto');
+                    quitaCorazon();
+                    poneEstilosIncorrecto();
+                  }
+              }
+            })
 
-            if (valor == respuestaCorrecta) {
-                buscador.setAttribute('placeholder',`${valor} es correcto`);
-                buscador.classList.add('placeholder-correcto');
-                valorScore++;
-                score.innerHTML = valorScore;
-                poneEstilosCorrecto();
-                numeroDeObjetos.push(idArray);
-
-                if (valorScore == 10) {
-                    // booleanoFinal = true;
-                    clearInterval(contador);
-                    divGanaste.style.display = 'block';
-                    divGanaste.style.animation = 'parpadeoGanaste 0.2s infinite'
-                    todoJuego.style.display = 'none';
-                    todoJuego.style.animation = '';
-                    dialogoParrafo.innerHTML = '...';
-                    contenedorHistoria.style.display = 'flex';
-                    setTimeout(() => {
-                        divGanaste.style.animation = 'desaparecerLentamente 2s linear';
-                        setTimeout(() => {
-                            divGanaste.style.display = 'none';
-                            divGanaste.style.animation = ''
-                            dialogoGanarBoleano = true;
-                        },1800);
-                    },1000)
-                }
-        
-                    
-            }
-            else{
-                buscador.setAttribute('placeholder',`${valor} es incorrecto`);
-                buscador.classList.add('placeholder-incorrecto');
-                quitaCorazon();
-                poneEstilosIncorrecto();
-            }
             buscador.value = '';
             setTimeout(() => {
                 removerObjetos();
@@ -299,7 +309,7 @@ window.addEventListener('keyup', (e) => {
                 buscador.setAttribute('placeholder','');
                 buscador.classList.remove('placeholder-correcto');
                 
-            },1000);
+            },250);
             
             break;
             
@@ -354,21 +364,8 @@ window.addEventListener('keyup', (e) => {
                 }    
             }
             if (switchEjecutado3 == true) {
-                switchEjecutado3 = false;
-                pEmpezarJuego.style.display = 'none';
-                buscador.focus();
-                contador = setInterval(() => {
-                    tiempo--;
-                    relojCifra.innerHTML = tiempo;
-                    poneAnimacionReloj();
-                    setTimeout(() => {
-                        quitaAnimacionReloj();
-                    },700);
-                    if (tiempo == 0) {
-                        clearInterval(contador);
-                        quitaCorazones();
-                    }
-                },1000);
+                  empezarReloj();
+                  switchEjecutado3 = false;
             }
 
 
@@ -398,7 +395,7 @@ window.addEventListener('keyup', (e) => {
                 setTimeout(() => {
                     contenedorTutorial.style.display = 'none';
                     contenedorTutorial.style.animation = '';
-                    switchEjecutado2 == false;
+                    switchEjecutado2 = false;
                     switchEjecutado3 = true;
                 },1800);
             }
@@ -456,11 +453,6 @@ botonNegarReto.addEventListener('click',() => {
 })
 
 aparicionDeObjetos();
-var objetoRespuesta = document.querySelector('[data-respuesta]');
-let respuestaCorrecta = objetoRespuesta.getAttribute('data-respuesta').toUpperCase();
 
-//=============== L O C A L  S T O R A G E ===============
-// if (booleanoFinal == true) {
-//     todoJuego.style.display = 'none';
-//     todoJuego.style.animation = '';
-// }
+//EY! gracias por jugar ^w^ , espero y no intentes hacer trampa con algo de aqui,aunque dudo que entiendas algo de esto pero si quieres que el juego siga normal...no muevas nada -w-
+//ATTE: S U B N O R M A L Y N X
